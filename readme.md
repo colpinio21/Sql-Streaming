@@ -59,6 +59,15 @@ ORDER BY id DESC LIMIT 3
 
 --
 
+# Afficher les noms, prénoms et âges des cateurs/actrices de plus de 30 ans dans l'ordre aphabétiques (prénom d'abord, puis nom) :
+
+SELECT firstName, name, age
+FROM actors
+WHERE age > 30
+ORDER BY firstName ASC, name ASC
+
+--
+
 #
 </li>
 </ul>
