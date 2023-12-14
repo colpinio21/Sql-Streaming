@@ -3,41 +3,62 @@
 # Requête permettant de générer la bdd
 <ul>
 <li>
-Générer les tables: 
+
+# Générer les tables: 
 
 CREATE TABLE actors (
-    firstName VARCHAR (20),
-    name VARCHAR (20),
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    firstName VARCHAR (50),
+    name VARCHAR (50),
     birthDate DATE,
-    created_at DATETIME,
-    updated_at DATETIME,
-),
+    created_at TEXT DEFAULT (strftime('%d-%m-%Y')),
+    updated_at TEXT DEFAULT (strftime('%H:%M:%S'))
+);
 
 CREATE TABLE director (
     firstName VARCHAR (20),
     name VARCHAR (20),
     created_at DATETIME,
     updated_at DATETIME,
-),
+);
 
 --
 
-Ajouter un acteur :
+# Ajouter un acteur :
 
 INSERT INTO actors (
     firstName,
     name,
-    created_at_,
-    birthDate
+    age
 ) VALUES (
-    'Jean',
-    'Dujardin',
-    1702483090,
-    '1972-06-19'
-)
+    'Ryan',
+    'Gosling',
+    '43'
+);
 
 --
 
+# Modifier un acteur :
 
+UPDATE actors SET name = 'Test'
+WHERE firstName = 'James';
+
+--
+
+# Supprimer un acteur :
+
+DELETE FROM actors
+WHERE ID = Numéro de l'ID
+
+--
+
+# Afficher les 3 derniers acteurs ajoutés :
+
+SELECT * FROM actors
+ORDER BY id DESC LIMIT 3
+
+--
+
+#
 </li>
 </ul>
