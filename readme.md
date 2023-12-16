@@ -98,6 +98,23 @@ ORDER BY firstName ASC, name ASC
 
 --
 
-#
+# Modifier un film :
+
+UPDATE Movies
+SET title = 'The Artist', annee_sortie = 2011
+WHERE movie_id = 1
+
+--
+
+# Afficher les directeurs ayant le plus de films favoris :
+
+SELECT d.name, COUNT(um.movie_id) AS total_favorite_movies
+FROM Users_Movies AS um
+JOIN Movies AS m ON um.movie_id = m.movie_id
+JOIN Directors AS d ON m.director_id = d.director_id
+GROUP BY d.name
+ORDER BY total_favorite_movies DESC;
+
+--
 </li>
 </ul>
