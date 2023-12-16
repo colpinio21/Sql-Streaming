@@ -13,24 +13,44 @@ Cela permet de voir d'avoir directement sous les yeux les tables de données et 
 <ul>
 <li>
 
-# Générer les tables: 
-
-CREATE TABLE actors (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    firstName VARCHAR (50),
-    name VARCHAR (50),
-    birthDate DATE,
-    created_at TEXT DEFAULT (strftime('%d-%m-%Y')),
-    updated_at TEXT DEFAULT (strftime('%H:%M:%S'))
+CREATE TABLE Users (
+    user_id INT PRIMARY KEY,
+    email VARCHAR (255),
+    password VARCHAR (255)
 );
 
-CREATE TABLE director (
-    firstName VARCHAR (20),
-    name VARCHAR (20),
-    created_at DATETIME,
-    updated_at DATETIME,
+CREATE TABLE Movies (
+    movie_id INT PRIMARY KEY,
+    title VARCHAR(255),
+    director_id INT,
+    duree INT,
+    annee_sortie INT,
+    FOREIGN KEY (director_id) REFERENCES Directors(director_id)
 );
 
+CREATE TABLE Users_Movies (
+    user_id INT,
+    movie_id INT,
+    FOREIGN KEY (user_id) REFERENCES Users(User_id),
+    FOREIGN KEY (movie_id) REFERENCES Movies(Movie_id),
+    PRIMARY KEY (user_id, movie_id)
+);
+
+CREATE TABLE Actors (
+    actor_id INT PRIMARY KEY,
+    nom VARCHAR(255),
+    prenom VARCHAR(255),
+    role VARCHAR(255),
+    date_naissance DATE
+);
+
+CREATE TABLE Acteurs_Films (
+    actor_id INT,
+    movie_id INT,
+    FOREIGN KEY (actor_id) REFERENCES Actors(actor_id),
+    FOREIGN KEY (movie_id) REFERENCES Movies(movie_id),
+    PRIMARY KEY (actor_id, movie_id)
+);
 --
 
 # Ajouter un acteur :
@@ -58,6 +78,7 @@ WHERE firstName = 'James';
 
 DELETE FROM actors
 WHERE ID = Numéro de l'ID
+(ou WHERE ID IS NULL)
 
 --
 
